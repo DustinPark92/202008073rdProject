@@ -12,12 +12,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
+    //appdelegate didfinishwithlaunching with에서 ios13.0버전이상이면 이 메서드를 실행한다.
+    //iOS 13.0 이하에서는 Appdelegate에
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        
+        // _ -> 와일드 카드 식별자
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        //1.코드로 엔트리 포인트
+        
+        window = UIWindow(windowScene: windowScene)
+        //2. 시작하고자 하는 viewcontroller 지정
+        
+        let vc = ViewController()
+        window?.rootViewController = vc
+        window?.makeKeyAndVisible()
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

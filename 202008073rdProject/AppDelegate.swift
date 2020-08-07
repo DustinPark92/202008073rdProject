@@ -11,10 +11,25 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window : UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //잘못 지정되면 시작점이 두개가 될 수도 있다
+        
+        if #available(ios 13.0, *) {
+            
+        } else {
+            
+            let vc = ViewController()
+            window?.rootViewController = vc
+            window?.makeKeyAndVisible()
+            
+        }
+        
+        
+        
         return true
     }
 
