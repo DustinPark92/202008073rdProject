@@ -23,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             
             let vc = ViewController()
-            window?.rootViewController = vc
+            let nav = UINavigationController(rootViewController: vc)
+            window?.rootViewController = nav
             window?.makeKeyAndVisible()
             
         }
