@@ -12,6 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window : UIWindow?
+    let defaults = UserDefaults.standard
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -22,10 +23,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         } else {
             
-            let vc = ViewController()
-            let nav = UINavigationController(rootViewController: vc)
-            window?.rootViewController = nav
-            window?.makeKeyAndVisible()
+                if defaults.object(forKey: "userStatus") as? Int != nil {
+                   if UserStatus(rawValue: defaults.integer(forKey: "userStatus"))! == .normal {
+                       // _ -> 와일드 카드 식별자
+                       
+                       
+                       //1.코드로 엔트리 포인트
+                       
+                      
+                       //2. 시작하고자 하는 viewcontroller 지정
+                       
+                       let vc = ViewController()
+                       let nav = UINavigationController(rootViewController: vc)
+                       window?.rootViewController = nav
+                       window?.makeKeyAndVisible()
+                       
+                   } else {
+                       
+            
+                       
+                       let vc = SignUpViewController()
+                       let nav = UINavigationController(rootViewController: vc)
+                       window?.rootViewController = nav
+                       window?.makeKeyAndVisible()
+                       
+                   }
+                   
+                   
+               } else {
+                   
+
+                   
+                   let vc = SignUpViewController()
+                   let nav = UINavigationController(rootViewController: vc)
+                   window?.rootViewController = nav
+                   window?.makeKeyAndVisible()
+                   
+               }
             
         }
         

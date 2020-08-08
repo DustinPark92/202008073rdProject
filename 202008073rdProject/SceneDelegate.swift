@@ -11,23 +11,56 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    let defaults = UserDefaults.standard
 
     //appdelegate didfinishwithlaunching with에서 ios13.0버전이상이면 이 메서드를 실행한다.
     //iOS 13.0 이하에서는 Appdelegate에
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        // _ -> 와일드 카드 식별자
         guard let windowScene = (scene as? UIWindowScene) else { return }
+         window = UIWindow(windowScene: windowScene)
         
-        //1.코드로 엔트리 포인트
+        if defaults.object(forKey: "userStatus") as? Int != nil {
+            if UserStatus(rawValue: defaults.integer(forKey: "userStatus"))! == .normal {
+                // _ -> 와일드 카드 식별자
+                
+                
+                //1.코드로 엔트리 포인트
+                
+               
+                //2. 시작하고자 하는 viewcontroller 지정
+                
+                let vc = ViewController()
+                let nav = UINavigationController(rootViewController: vc)
+                window?.rootViewController = nav
+                window?.makeKeyAndVisible()
+                
+            } else {
+                
+     
+                
+                let vc = SignUpViewController()
+                let nav = UINavigationController(rootViewController: vc)
+                window?.rootViewController = nav
+                window?.makeKeyAndVisible()
+                
+            }
+            
+            
+        } else {
+            
+
+            
+            let vc = SignUpViewController()
+            let nav = UINavigationController(rootViewController: vc)
+            window?.rootViewController = nav
+            window?.makeKeyAndVisible()
+            
+        }
         
-        window = UIWindow(windowScene: windowScene)
-        //2. 시작하고자 하는 viewcontroller 지정
+
         
-        let vc = ViewController()
-        let nav = UINavigationController(rootViewController: vc)
-        window?.rootViewController = nav
-        window?.makeKeyAndVisible()
+
         
     }
 
